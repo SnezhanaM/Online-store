@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.forms import ModelChoiceField, ModelForm, ValidationError
+from django.utils.safestring import mark_safe
+
 from .models import *
 
 from PIL import Image
@@ -7,18 +9,21 @@ from PIL import Image
 
 class SmartphoneAdminForm(ModelForm):
 
-    VALID_RESOLUTION = (400, 400)
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['image'].help_text = 'Минимальное разрешение изображения: {}x{}'.format(*self.VALID_RESOLUTION)
+        self.fields['image'].help_text = mark_safe("""<span style="color:red; font-size:14px;">Минимальное разрешение изображения: {}x{}</span>""".format(*Product.MIN_RESOLUTION))
 
     def clean_image(self):
         image = self.cleaned_data['image']
         img = Image.open(image)
-        min_height, min_width = self.VALID_RESOLUTION
+        min_height, min_width = Product.MIN_RESOLUTION
+        max_height, max_width = Product.MAX_RESOLUTION
+        if image.size > Product.MAX_IMAGE_SIZE:
+            raise ValidationError('Размер загруженного изображения не должен превышать 3 Мб')
         if img.width < min_width or img.height < min_height:
             raise ValidationError('Разрешение загруженного изображения меньше минимального')
+        if img.width > max_width or img.height > max_height:
+            raise ValidationError('Разрешение загруженного изображения больше максимального')
         return image
 
 
