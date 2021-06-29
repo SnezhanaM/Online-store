@@ -116,19 +116,6 @@ class Product(models.Model):
             raise MinResolutionErrorException('Разрешение загруженного изображения меньше минимального')
         if img.width > max_width or img.height > max_height:
             raise MaxResolutionErrorException('Разрешение загруженного изображения больше максимального')
-        # Пример автоматического сжатия изображения,
-        # если его разрешение больше допустимого
-        # image = self.image
-        # img = Image.open(image)
-        # new_img = img.convert('RGB')
-        # resized_new_img = new_img.resize((800, 800), Image.ANTIALIAS)
-        # filestream = BytesIO()
-        # resized_new_img.save(filestream, 'JPEG', quality=90)
-        # filestream.seek(0)
-        # name = '{}.{}'.format(*self.image.name.split('.'))
-        # self.image = InMemoryUploadedFile(
-        #     filestream, 'ImageField', name, 'jpeg/image', sys.getsizeof(filestream), None
-        # )
         super().save(*args, **kwargs)
 
     def get_model_name(self):
