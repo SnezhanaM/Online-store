@@ -22,7 +22,7 @@ When you click on a product category, we go to the page of this category (in thi
 On the page of a device, its characteristics, name, price and description are presented.
 And also you can add a product to the cart.
 
-<img src="https://github.com/SnezhanaM/Online-store/blob/main/pictures/xiaomi-mi-10t-pro_page.png" width="500" height="400"/>
+<img src="https://github.com/SnezhanaM/Online-store/blob/main/pictures/xiaomi-mi-10t-pro_page.png" width="500" height="300"/>
 
 After adding a product, we go to the cart page.
 Here you can change the quantity of devices, delete it and place an order.
@@ -31,7 +31,7 @@ Here you can change the quantity of devices, delete it and place an order.
 
 On the checkout page, you must fill in the buyer's details and send them.
 
-<img src="https://github.com/SnezhanaM/Online-store/blob/main/pictures/checkout_page.png" width="500" height="400"/>
+<img src="https://github.com/SnezhanaM/Online-store/blob/main/pictures/checkout_page.png" width="500" height="300"/>
 
 As a result, we return to the main page of the site, and receive a notification that the manager will contact us.
 
